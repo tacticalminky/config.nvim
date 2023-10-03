@@ -42,7 +42,8 @@ require('lazy').setup({
   require('plugins.lsp'),
   require('plugins.auto-cmp'),
   require('plugins.telescope'),
-  require('plugins.treesitter')
+  require('plugins.treesitter'),
+  require('plugins.harpoon')
 
 }, {})
 
@@ -56,3 +57,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
