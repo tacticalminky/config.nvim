@@ -6,7 +6,7 @@ require('base.sets')
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -25,22 +25,26 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  -- Useful plugin to show you pending keybinds.
+  'folke/which-key.nvim',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
 
   require('plugins.theme'),
+  require('plugins.git'),
   require('plugins.lsp'),
   require('plugins.auto-cmp'),
   require('plugins.telescope'),
   require('plugins.treesitter'),
-  require('plugins.harpoon')
+  require('plugins.harpoon'),
+
+  -- Preconfigured plugins form kickstart
+  -- require('plugins.debug'),
+  -- require('plugins.autoformat')
 
 }, {})
 
@@ -54,4 +58,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
