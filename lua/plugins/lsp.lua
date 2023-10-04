@@ -76,9 +76,7 @@ return {
     --  If you want to override the default filetypes that your language server will attach to you can
     --  define the property 'filetypes' to the map in question.
     local servers = {
-      bashls = {},
       clangd = {},
-      -- java_language_server = {},
       jdtls = {},
       -- gopls = {},
       -- pyright = {},
@@ -92,20 +90,24 @@ return {
       },
     }
 
-    local webdev_servers = {
-      angularls = {},
-      cssls = {},
-      html = {},
-      tsserver = {}
-    }
+    if os.execute('npm -v') then
+      servers = merge_tables(servers, { bashls = {} })
 
-    local docker_servers = {
-      dockerls = {},
-      docker_compose_language_service = {}
-    }
+      local webdev_servers = {
+        angularls = {},
+        cssls = {},
+        html = {},
+        tsserver = {}
+      }
 
-    servers = merge_tables(servers, webdev_servers)
-    servers = merge_tables(servers, docker_servers)
+      local docker_servers = {
+        dockerls = {},
+        docker_compose_language_service = {}
+      }
+
+      servers = merge_tables(servers, webdev_servers)
+      servers = merge_tables(servers, docker_servers)
+    end
 
     -- Setup neovim lua configuration
     require('neodev').setup()

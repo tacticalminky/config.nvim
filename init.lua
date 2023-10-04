@@ -42,10 +42,9 @@ require('lazy').setup({
   require('plugins.treesitter'),
   require('plugins.harpoon'),
 
-  -- Preconfigured plugins form kickstart
+  -- Preconfigured plugins from kickstart
   -- require('plugins.debug'),
   -- require('plugins.autoformat')
-
 }, {})
 
 -- [[ Highlight on yank ]]

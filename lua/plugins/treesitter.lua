@@ -19,10 +19,12 @@ return {
     -- See `:help nvim-treesitter`
 
     -- set base languages
-    local languages = { 'c', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
+    local languages = { 'c', 'bash', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
 
     -- set webdev languages
-    languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
+    if os.execute('npm -v') then
+      languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
+    end
 
     -- set docker languages
     languages = merge_tables(languages, { 'dockerfile' })
