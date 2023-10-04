@@ -1,4 +1,10 @@
 -- treesitter.lua
+local function merge_tables(t1, t2)
+  for key, val in pairs(t2) do
+    t1[key] = val
+  end
+  return t1
+end
 
 return {
   -- Highlight, edit, and navigate code
@@ -7,12 +13,23 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   build = ':TSUpdate',
+  opts = {},
   config = vim.schedule(function()
     -- [[ Configure Treesitter ]]
     -- See `:help nvim-treesitter`
-    require('nvim-treesitter.configs').setup {
+
+    -- set base languages
+    local languages = { 'c', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
+
+    -- set webdev languages
+    languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
+
+    -- set docker languages
+    languages = merge_tables(languages, { 'dockerfile' })
+
+    local opts = {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = { 'c', 'lua', 'python', 'rust', 'tsx', 'java', 'javascript', 'typescript', 'vimdoc', 'vim' },
+      ensure_installed = languages,
 
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = false,
@@ -73,5 +90,7 @@ return {
         },
       },
     }
+
+    require('nvim-treesitter.configs').setup(opts)
   end)
 }

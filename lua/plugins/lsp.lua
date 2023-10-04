@@ -1,4 +1,10 @@
 -- lsp.lua
+local function merge_tables(t1, t2)
+  for key, val in pairs(t2) do
+    t1[key] = val
+  end
+  return t1
+end
 
 return {
   -- LSP Configuration & Plugins
@@ -70,12 +76,13 @@ return {
     --  If you want to override the default filetypes that your language server will attach to you can
     --  define the property 'filetypes' to the map in question.
     local servers = {
-      -- clangd = {},
+      bashls = {},
+      clangd = {},
+      -- java_language_server = {},
+      jdtls = {},
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
-      -- tsserver = {},
-      -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
       lua_ls = {
         Lua = {
@@ -84,6 +91,21 @@ return {
         },
       },
     }
+
+    local webdev_servers = {
+      angularls = {},
+      cssls = {},
+      html = {},
+      tsserver = {}
+    }
+
+    local docker_servers = {
+      dockerls = {},
+      docker_compose_language_service = {}
+    }
+
+    servers = merge_tables(servers, webdev_servers)
+    servers = merge_tables(servers, docker_servers)
 
     -- Setup neovim lua configuration
     require('neodev').setup()
