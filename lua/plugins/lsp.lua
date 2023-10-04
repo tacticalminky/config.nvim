@@ -1,4 +1,7 @@
--- lsp.lua
+-- [[ LSP Configuration & Plugins ]]
+--
+-- Language specific code completion, syntax highlighting, and error detection
+
 local function merge_tables(t1, t2)
   for key, val in pairs(t2) do
     t1[key] = val
@@ -7,7 +10,6 @@ local function merge_tables(t1, t2)
 end
 
 return {
-  -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
@@ -15,22 +17,16 @@ return {
     'williamboman/mason-lspconfig.nvim',
 
     -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
   },
   config = vim.schedule(function()
-    -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
+      -- A function that lets us more easily define mappings specific for LSP related items.
+      -- It sets the mode, buffer and description for us each time.
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
@@ -68,13 +64,6 @@ return {
     end
 
     -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-    --
-    --  Add any additional override configuration in the following tables. They will be passed to
-    --  the `settings` field of the server config. You must look up that documentation yourself.
-    --
-    --  If you want to override the default filetypes that your language server will attach to you can
-    --  define the property 'filetypes' to the map in question.
     local servers = {
       clangd = {},
       jdtls = {},
@@ -90,6 +79,7 @@ return {
       },
     }
 
+    -- Check if NPM is install for the following servers
     if os.execute('npm -v') then
       servers = merge_tables(servers, { bashls = {} })
 
@@ -125,12 +115,12 @@ return {
 
     mason_lspconfig.setup_handlers({
       function(server_name)
-        require('lspconfig')[server_name].setup {
+        require('lspconfig')[server_name].setup({
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
-        }
+        })
       end
     })
   end)

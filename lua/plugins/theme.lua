@@ -1,4 +1,6 @@
--- theme.lua
+-- [[ Theme Configuration ]]
+--
+-- Configures the color scheme, statusline, and other visual sugar
 
 return {
   {

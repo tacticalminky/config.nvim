@@ -1,4 +1,6 @@
--- harpoon.lua
+-- [[ Harpoon Configuration ]]
+--
+-- Bookmark and quickly change to files
 
 return {
   'ThePrimeagen/harpoon',

@@ -1,7 +1,6 @@
--- git.lua
+-- [[ Git Plugins and Configuration ]]
 
 return {
-  -- Git related plugins
   'tpope/vim-fugitive',
   -- 'tpope/vim-rhubarb', -- GitHub integration
 

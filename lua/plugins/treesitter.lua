@@ -1,4 +1,8 @@
--- treesitter.lua
+-- [[ Treesitter Configuration ]]
+-- See `:help nvim-treesitter`
+--
+-- Highlight, edit, and navigate code
+
 local function merge_tables(t1, t2)
   for key, val in pairs(t2) do
     t1[key] = val
@@ -7,7 +11,6 @@ local function merge_tables(t1, t2)
 end
 
 return {
-  -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -15,18 +18,16 @@ return {
   build = ':TSUpdate',
   opts = {},
   config = vim.schedule(function()
-    -- [[ Configure Treesitter ]]
-    -- See `:help nvim-treesitter`
 
-    -- set base languages
+    -- Set base languages
     local languages = { 'c', 'bash', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
 
-    -- set webdev languages
+    -- Set webdev languages
     if os.execute('npm -v') then
       languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
     end
 
-    -- set docker languages
+    -- Set docker languages
     languages = merge_tables(languages, { 'dockerfile' })
 
     local opts = {

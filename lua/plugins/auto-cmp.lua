@@ -1,4 +1,5 @@
--- auto-cmp.lua
+-- [[ Auto Completion Configuration ]]
+-- See `:help cmp`
 
 return {
   'hrsh7th/nvim-cmp',
@@ -14,8 +15,6 @@ return {
     'rafamadriz/friendly-snippets',
   },
   config = vim.schedule(function()
-    -- [[ Configure nvim-cmp ]]
-    -- See `:help cmp`
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     require('luasnip.loaders.from_vscode').lazy_load()
