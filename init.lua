@@ -1,7 +1,7 @@
 -- init.lua
 
-require('base.remaps')
-require('base.sets')
+require('remaps')
+require('sets')
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim

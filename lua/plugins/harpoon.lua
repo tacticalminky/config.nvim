@@ -10,7 +10,7 @@ return {
     vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = '[H]arpoon [A]dd file' })
     vim.keymap.set('n', '<C-h>', require('harpoon.ui').toggle_quick_menu, { desc = 'Toggle Harpoon Quick Menu' })
 
-    for i = 1, 4
+    for i = 1, 9
     do
       vim.keymap.set('n', '<leader>h' .. i, function () require('harpoon.ui').nav_file(i) end, { desc = '[H]arpoon goto file ' .. i })
     end
