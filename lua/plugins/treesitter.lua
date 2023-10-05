@@ -14,6 +14,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'windwp/nvim-ts-autotag'
   },
   build = ':TSUpdate',
   opts = {},
@@ -36,6 +37,9 @@ return {
 
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = false,
+
+      -- Auto tag completion for html
+      autotag = { enable = true },
 
       highlight = { enable = true },
       indent = { enable = true },
