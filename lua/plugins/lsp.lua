@@ -80,7 +80,7 @@ return {
     }
 
     -- Check if NPM is install for the following servers
-    if os.execute('npm -v') then
+    if os.execute('npm -v') == 0 then
       servers = merge_tables(servers, { bashls = {} })
 
       local webdev_servers = {

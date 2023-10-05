@@ -24,9 +24,7 @@ return {
     local languages = { 'c', 'bash', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
 
     -- Set webdev languages
-    if os.execute('npm -v') then
-      languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
-    end
+    languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
 
     -- Set docker languages
     languages = merge_tables(languages, { 'dockerfile' })
