@@ -1,11 +1,15 @@
--- init.lua
+-- [[ Neovim Intitialization File ]]
+--
+-- Set remaps and base keysbinds
+-- Install the package manager
+-- And install packages/load configurations
 
 require('remaps')
 require('sets')
 
 -- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
+--  https://github.com/folke/lazy.nvim
+--  `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -44,16 +48,5 @@ require('lazy').setup({
 
   -- Preconfigured plugins from kickstart
   -- require('plugins.debug'),
-  -- require('plugins.autoformat')
+  require('plugins.autoformat')
 }, {})
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})

@@ -19,7 +19,6 @@ return {
   build = ':TSUpdate',
   opts = {},
   config = vim.schedule(function()
-
     -- Set base languages
     local languages = { 'c', 'bash', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
 
@@ -33,8 +32,11 @@ return {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = languages,
 
-      -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+      -- Autoinstall languages that are not installed
       auto_install = false,
+
+      -- Synchronously install parsers (only for `ensure_installed`)
+      sync_install = false,
 
       -- Auto tag completion for html
       autotag = { enable = true },
