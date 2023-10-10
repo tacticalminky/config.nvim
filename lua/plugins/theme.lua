@@ -19,7 +19,14 @@ return {
     'navarasu/onedark.nvim',
     priority = 1000,
     opts = {
-      style = 'dark',
+      style = 'darker',
+      transparent = true,
+      colors = {
+        my_grey = '#777777'
+      },
+      highlights = {
+        LineNr = { fg = '$my_grey' }
+      }
     },
     config = function(_, opts)
       require('onedark').setup(opts)
