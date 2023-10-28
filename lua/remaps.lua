@@ -11,7 +11,7 @@ vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Executing shell commands
-vim.keymap.set('n', '<leader>x', function ()
+vim.keymap.set('n', '<leader>x', function()
   vim.fn.execute('!' .. vim.fn.input('Execute > '), '')
 end, { desc = 'Execute Command' })
 
