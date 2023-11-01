@@ -70,6 +70,7 @@ return {
       -- gopls = {},
       pyright = {},
       -- rust_analyzer = {},
+      marksman = {},
 
       lua_ls = {
         Lua = {
