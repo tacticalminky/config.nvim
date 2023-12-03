@@ -70,5 +70,14 @@ return {
     -- See `:help indent_blankline.txt`
     main = "ibl",
     opts = {}
+  },
+  {
+    -- Autoresize focused window in split view
+    'nvim-focus/focus.nvim',
+    opts = {
+      ui = {
+        cursorline = false
+      }
+    }
   }
 }

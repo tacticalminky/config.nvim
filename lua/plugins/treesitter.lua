@@ -3,12 +3,7 @@
 --
 -- Highlight, edit, and navigate code
 
-local function merge_tables(t1, t2)
-  for key, val in pairs(t2) do
-    t1[key] = val
-  end
-  return t1
-end
+local utils = require('utils')
 
 return {
   'nvim-treesitter/nvim-treesitter',
@@ -23,10 +18,10 @@ return {
     local languages = { 'c', 'bash', 'lua', 'python', 'rust', 'java', 'vimdoc', 'vim' }
 
     -- Set webdev languages
-    languages = merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
+    languages = utils.merge_tables(languages, { 'css', 'html', 'javascript', 'json', 'tsx', 'typescript' })
 
     -- Set docker languages
-    languages = merge_tables(languages, { 'dockerfile' })
+    languages = utils.merge_tables(languages, { 'dockerfile' })
 
     local opts = {
       -- Add languages to be installed here that you want installed for treesitter

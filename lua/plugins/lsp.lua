@@ -2,12 +2,7 @@
 --
 -- Language specific code completion, syntax highlighting, and error detection
 
-local function merge_tables(t1, t2)
-  for key, val in pairs(t2) do
-    t1[key] = val
-  end
-  return t1
-end
+local utils = require('utils')
 
 return {
   'neovim/nvim-lspconfig',
@@ -66,11 +61,11 @@ return {
     -- Enable the following language servers
     local servers = {
       clangd = {},
-      jdtls = {},
       -- gopls = {},
+      jdtls = {},
       pyright = {},
       -- rust_analyzer = {},
-      marksman = {},
+      lemminx = {},
 
       lua_ls = {
         Lua = {
@@ -78,26 +73,30 @@ return {
           telemetry = { enable = false },
         },
       },
+
+      marksman = {},
     }
 
     -- Check if NPM is install for the following servers
     if os.execute('npm -v') == 0 then
-      servers = merge_tables(servers, { bashls = {} })
+      -- Bash
+      servers = utils.merge_tables(servers, {
+        bashls = {}
+      })
 
-      local webdev_servers = {
+      -- Angular, CSS, HTML, and TypeScript
+      servers = utils.merge_tables(servers, {
         angularls = {},
         cssls = {},
         html = {},
         tsserver = {}
-      }
+      })
 
-      local docker_servers = {
+      -- Docker
+      servers = utils.merge_tables(servers, {
         dockerls = {},
         docker_compose_language_service = {}
-      }
-
-      servers = merge_tables(servers, webdev_servers)
-      servers = merge_tables(servers, docker_servers)
+      })
     end
 
     -- Setup neovim lua configuration
