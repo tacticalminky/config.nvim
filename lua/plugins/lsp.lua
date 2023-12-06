@@ -89,6 +89,7 @@ return {
         angularls = {},
         cssls = {},
         html = {},
+        jsonls = {},
         tsserver = {}
       })
 
