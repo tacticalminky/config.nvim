@@ -1,10 +1,10 @@
 -- [[ Neovim Intitialization File ]]
 --
--- Set remaps and base keysbinds
+-- Set keybinds and base keysbinds
 -- Install the package manager
 -- And install packages/load configurations
 
-require('remaps')
+require('keybinds')
 require('sets')
 
 -- Install package manager
