@@ -32,3 +32,8 @@ end, { desc = '[T]oggle Relative Numbering' })
 vim.keymap.set('n', '<leader>ta', function()
   vim.fn.execute('AutoFormatToggle', '')
 end, { desc = '[T]oggle Autoformating' })
+
+-- Focus Auto-resizing
+vim.keymap.set('n', '<leader>tf', function()
+  vim.fn.execute('FocusToggle', '')
+end, { desc = '[T]oggle Focus Auto-resizing' })
